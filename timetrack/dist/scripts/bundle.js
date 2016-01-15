@@ -28985,11 +28985,130 @@ module.exports =Main;
 
 var React = require('react');
 
-var ProjectTime = React.createClass({displayName: "ProjectTime",
+var Upper = React.createClass({displayName: "Upper",
 		render:function(){
 			return (
-					React.createElement("div", {className: "jumbotron"}, 
-						React.createElement("h1", null, "wow")
+				React.createElement("div", {className: "container"}, 
+					React.createElement("div", {className: "row"}, 
+					    React.createElement("div", {className: "col-lg-6 "}, React.createElement("h4", null, "React.js Project Tracker")), 
+					    React.createElement("div", {className: "col-lg-6 "}, 
+					      React.createElement("div", {className: "pull-right"}, 
+					        React.createElement("h5", null, "Logged In as Manoj"), 
+					        React.createElement("a", {href: "/"}, "logout")
+					      )
+					    )
+					)
+				)
+				
+				);
+		}
+});
+var ProjectSummary = React.createClass({displayName: "ProjectSummary",
+		render:function(){			
+				
+		return (
+					React.createElement("div", {className: "col-lg-12", style: {padding: 30 + 'px'}}, 
+					React.createElement("div", {className: "panel panel-default"}, 
+						React.createElement("div", {className: "panel-heading"}, 
+			                React.createElement("h3", {className: "panel-title"}, "Project Name")
+			            ), 
+							React.createElement("div", {className: "panel-body"}, 
+								React.createElement("div", {className: "well "}, 
+									React.createElement("div", {className: "row"}, 
+									React.createElement("p", {className: "pull-right"}, "(TOM ERIC SAM)")					
+									), 
+									React.createElement("div", {className: "row"}, 
+											React.createElement("div", {className: "col-lg-6"}, 
+											React.createElement("h3", null, "Total TimeTracked:")
+											), 
+									React.createElement("div", {className: "col-lg-6 "}, 
+											React.createElement("div", {className: "col-lg-8"}, 
+											React.createElement("h3", {className: "pull-right"}, "Last Updated:")
+											), 
+											React.createElement("div", {className: "col-lg-4"}, 
+											React.createElement("h3", null, "12:45")
+											)
+									)
+									), 
+										React.createElement("div", {className: "row"}, 
+											React.createElement("div", {className: "col-lg-6"}, 
+												React.createElement("button", {type: "button", className: "btn btn-default"}, "Add Time")
+											), 
+											React.createElement("div", {className: "col-lg-6 pull-right"}, 
+												React.createElement("div", {className: "col-lg-8 "}, 
+												React.createElement("button", {type: "button", className: "btn btn-default pull-right"}, "Add Remove Collaborators")
+												), 
+												React.createElement("div", {className: "col-lg-4 "}, 
+												React.createElement("button", {type: "button", className: "btn btn-default pull-right"}, "Close Project")
+												)
+											)
+										)
+									)
+								)
+							
+					)
+					)
+		);
+	}
+
+});
+
+var ProjectLog = React.createClass({displayName: "ProjectLog",
+		render:function(){
+			return (React.createElement("div", {className: "well"}, 
+					React.createElement("div", {className: "row"}, 
+						React.createElement("div", {className: "col-lg-4"}, 
+							React.createElement("small", null, "Task Name:spartan")
+						), 	
+						React.createElement("h5", {className: "pull-right"}, "TOM")		
+					), 
+					React.createElement("div", {className: "row"}, 
+						React.createElement("div", {className: "col-lg-4"}, 
+						React.createElement("small", null, "Task:Description: created a wiki project ")
+						)
+					), 
+					React.createElement("div", {className: "row"}, 
+						React.createElement("div", {className: "col-lg-3"}, 
+						React.createElement("small", null, "From:16:34")
+						), 
+						React.createElement("div", {className: "col-lg-3 pull-left"}, 
+						React.createElement("small", null, "To:16:34")
+						), 
+						React.createElement("div", {className: "col-lg-3 pull-left"}, 
+						React.createElement("small", null, "Last Updated:16:34")
+						), 
+						React.createElement("div", {className: "col-lg-3 pull-right"}, 
+						React.createElement("span", {className: "pull-right"}, 
+						" ", React.createElement("a", {href: "/"}, "Edit"), " "
+						), 
+						React.createElement("span", {className: "pull-right"}, 
+						" ", React.createElement("a", {href: "/", className: ""}, "Remove"), " "
+						)
+						)
+					)
+					)	
+				);
+		}
+});
+
+var ProjectTime = React.createClass({displayName: "ProjectTime",
+		render:function(){
+			var jumboHeight={
+						height: 555
+						
+			};
+			return (
+					React.createElement("div", {className: "clearfix"}, 
+					React.createElement(Upper, null), 
+							React.createElement("div", {className: "row"}, 
+							React.createElement(ProjectSummary, null)
+							), 
+							React.createElement("div", {className: " jumbotron ", style: {padding: 30 + 'px'}}, 
+							
+							React.createElement(ProjectLog, null), 
+							React.createElement(ProjectLog, null)
+							
+							)
 					)
 				);
 		}
@@ -29003,7 +29122,7 @@ $=jQuery = require('jquery');
 var React = require('react');
 
 var Main = require('./components/homePage');
-var ProjectTime = require('./components/projecttime/projectTime');
+var ProjectTime = require('./components/projecttime/projectPage');
 
 
 var App = React.createClass({displayName: "App",
@@ -29029,4 +29148,4 @@ function render(){
 window.addEventListener('hashchange', render);
 render();
 
-},{"./components/homePage":159,"./components/projecttime/projectTime":160,"jquery":28,"react":158}]},{},[161]);
+},{"./components/homePage":159,"./components/projecttime/projectPage":160,"jquery":28,"react":158}]},{},[161]);

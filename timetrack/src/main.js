@@ -3,7 +3,7 @@ $=jQuery = require('jquery');
 var React = require('react');
 
 var Main = require('./components/homePage');
-var ProjectTime = require('./components/projecttime/projectTime');
+var ProjectTime = require('./components/projecttime/projectPage');
 
 
 var App = React.createClass({
