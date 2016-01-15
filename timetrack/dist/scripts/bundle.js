@@ -28944,7 +28944,7 @@ var Listproject = React.createClass({displayName: "Listproject",
 							        )), 
 							       React.createElement("li", {className: "list-group-item"}, 
 							        React.createElement("p", {className: "pull-right"}, "owner:tom"), 
-							        React.createElement("a", {href: "/"}, "project Spartan"), React.createElement("br", null), 
+							        React.createElement("a", {href: "/#projecttime"}, "project Spartan"), React.createElement("br", null), 
 
 							        React.createElement("small", null, "last updated", React.createElement("cite", null, "16:24"))
 							        )					        
@@ -28981,12 +28981,52 @@ var Main = React.createClass({displayName: "Main",
 module.exports =Main;
 
 },{"react":158}],160:[function(require,module,exports){
+"use strict";
+
+var React = require('react');
+
+var ProjectTime = React.createClass({displayName: "ProjectTime",
+		render:function(){
+			return (
+					React.createElement("div", {className: "jumbotron"}, 
+						React.createElement("h1", null, "wow")
+					)
+				);
+		}
+});
+
+module.exports =ProjectTime;
+
+},{"react":158}],161:[function(require,module,exports){
 $=jQuery = require('jquery');
 
 var React = require('react');
 
-var Main = require('./common/homePage');
+var Main = require('./components/homePage');
+var ProjectTime = require('./components/projecttime/projectTime');
 
-React.render(React.createElement(Main, null), document.getElementById('app'));
 
-},{"./common/homePage":159,"jquery":28,"react":158}]},{},[160]);
+var App = React.createClass({displayName: "App",
+			render:function(){
+				var Child;
+				switch(this.props.route){
+					case 'projecttime': Child =ProjectTime; break;
+					default: Child=Main;
+				}
+				return (
+					React.createElement("div", null, 
+						React.createElement(Child, null)
+					)
+					);
+			}
+
+});
+function render(){
+	var route= window.location.hash.substr(1);
+	React.render(React.createElement(App, {route: route}), document.getElementById('app'));
+}
+
+window.addEventListener('hashchange', render);
+render();
+
+},{"./components/homePage":159,"./components/projecttime/projectTime":160,"jquery":28,"react":158}]},{},[161]);

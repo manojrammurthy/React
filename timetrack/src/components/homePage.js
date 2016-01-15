@@ -89,7 +89,7 @@ var Listproject = React.createClass({
 							        </li></a>
 							       <li className="list-group-item">
 							        <p className="pull-right">owner:tom</p>
-							        <a href='/' >project Spartan</a>< br />
+							        <a href='/#projecttime' >project Spartan</a>< br />
 
 							        <small>last updated<cite>16:24</cite></small>
 							        </li>					        
