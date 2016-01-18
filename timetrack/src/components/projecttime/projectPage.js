@@ -1,6 +1,8 @@
 "use strict";
 
 var React = require('react');
+var Modal = require('react-bootstrap').Modal;
+var Button = require('react-bootstrap').Button;
 
 var Upper = React.createClass({
 		render:function(){
@@ -21,6 +23,20 @@ var Upper = React.createClass({
 		}
 });
 var ProjectSummary = React.createClass({
+	handleSubmit:function(){
+		console.log('hi');
+	},
+	getInitialState() {
+    return { showModal: false };
+  },
+
+  close() {
+    this.setState({ showModal: false });
+  },
+
+  open() {
+    this.setState({ showModal: true });
+  },
 		render:function(){			
 				
 		return (
@@ -49,11 +65,12 @@ var ProjectSummary = React.createClass({
 									</div>
 										<div className="row">
 											<div className="col-lg-6">
-												<button type="button" className="btn btn-default">Add Time</button>
+												<button type="button" className="btn btn-default"  onClick={this.open}>Add Time</button>
+												
 											</div>
 											<div className="col-lg-6 pull-right">
 												<div className="col-lg-8 ">
-												<button type="button" className="btn btn-default pull-right">Add Remove Collaborators</button>
+												<button type="button" className="btn btn-default pull-right" onClick={this.handleSubmit}>Add Remove Collaborators</button>
 												</div>
 												<div className="col-lg-4 ">
 												<button type="button" className="btn btn-default pull-right">Close Project</button>
@@ -64,11 +81,92 @@ var ProjectSummary = React.createClass({
 								</div>
 							
 					</div>
+					 <Modal show={this.state.showModal} onHide={this.close}>
+				          <Modal.Header closeButton>
+				            <Modal.Title>Add Time for project spartan</Modal.Title>
+				          </Modal.Header>
+				          <Modal.Body>
+				         <form role="form" className="form-horizontal">
+						    <div className="form-group">
+						      <label className="col-sm-3" >Project Name</label>
+						      <div className="col-sm-9"><input type="text" className="form-control" ref="projectName" placeholder="Project Name" /></div>
+						    </div>					   
+							    
+							    <div style={{height: 70 + 'px'}} >
+							    <label className="col-sm-3" >Task Description</label>
+						      <div className="col-sm-9"><textarea  className="form-control" ref="projectName" placeholder="Project Name" /></div>
+							    </div>
+
+							    <div className="form-group">
+							      <div className="col-sm-6">
+							      <label className="col-sm-3" >From-Time</label>
+							        <input type="datetime-local" className="form-control" ref="fromtime"  />
+							      </div>
+							      <div className="col-sm-6">
+							      <label className="col-sm-3" >To-Time</label>
+							       <input type="datetime-local" className="form-control" ref="totime"  />
+							      </div>
+							    </div>
+							  </form>		            
+					          </Modal.Body>
+					          <Modal.Footer>
+					          <button type="submit" className="btn btn-success pull-left">Submit</button>
+					            <Button onClick={this.close}>Cancel</Button>
+					          </Modal.Footer>
+					        </Modal>
 					</div>
 		);
 	}
 
 });
+
+var ProjectForm = React.createClass({
+		render:function(){
+			var panelHeight={
+				minHeight:300
+			}
+		return (
+				<div className="col-lg-6 " style={{padding: 30 + 'px'}}>
+				<div className="panel panel-default"  >
+						<div className="panel-heading"><h4>Add New Projects</h4>
+						</div>
+						<div className="panel-body" style={panelHeight}>
+						<form role="form" className="form-horizontal">
+						    <div className="form-group">
+						      <label className="col-sm-3" >Project Name</label>
+						      <div className="col-sm-9"><input type="text" className="form-control" ref="projectName" placeholder="Project Name" /></div>
+						    </div>					   
+							    <div className="form-group">
+							      <label className="col-sm-4">Project Collaborators</label>
+							      <div className="col-sm-8"><select multiple className="form-control">
+															  <option>Tom</option>
+															  <option>Dic</option>
+															  <option>Harry</option>
+															  <option>Peter</option>
+															  <option>Eric</option>
+															  <option>Sam</option>
+															</select>
+								  </div>
+							    </div>
+							    <div style={{height: 70 + 'px'}} ></div>
+
+							    <div className="form-group">
+							      <div className="col-sm-6">
+							        <button type="submit" className="btn btn-info btn-block pull-right">Add</button>
+							      </div>
+							      <div className="col-sm-6">
+							        <button type="submit" className="btn btn-warning btn-block pull-left">Reset</button>
+							      </div>
+							    </div>
+							  </form>
+						</div>
+					
+				</div>
+				</div>	
+			);
+	}
+});
+
 
 var ProjectLog = React.createClass({
 		render:function(){
@@ -121,7 +219,6 @@ var ProjectTime = React.createClass({
 							<ProjectSummary />
 							</div>
 							<div className=" jumbotron " style={{padding: 30 + 'px'}}>
-							
 							<ProjectLog />
 							<ProjectLog />
 							
